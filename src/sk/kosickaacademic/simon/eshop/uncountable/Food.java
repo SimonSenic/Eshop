@@ -12,6 +12,11 @@ public class Food extends Item implements Weight {
     }
 
     @Override
+    public void setWeight(double w) {
+        this.weight=w;
+    }
+
+    @Override
     public double getWeight(){
         return weight;
     }

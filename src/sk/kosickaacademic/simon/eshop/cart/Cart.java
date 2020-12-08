@@ -1,6 +1,9 @@
 package sk.kosickaacademic.simon.eshop.cart;
 
 import sk.kosickaacademic.simon.eshop.Item;
+import sk.kosickaacademic.simon.eshop.countable.Count;
+import sk.kosickaacademic.simon.eshop.services.Service;
+import sk.kosickaacademic.simon.eshop.uncountable.Weight;
 import sk.kosickaacademic.simon.eshop.utilities.Utilities;
 
 import java.util.ArrayList;
@@ -13,7 +16,19 @@ public class Cart {
     }
 
     public void addItem(Item newItem){
-        list.add(newItem);
+        if(newItem instanceof Count && ((Count)newItem).getCount()>0)
+            list.add(newItem);
+        if(newItem instanceof Weight && ((Weight)newItem).getWeight()>0){
+            boolean IsAlreadyInCard = false;
+            for(Item temp:list)
+                if(temp.getName().equals(newItem.getName()) && temp.getPrice()==newItem.getPrice()){
+                    ((Weight)temp).setWeight(((Weight)temp).getWeight() + ((Weight)newItem).getWeight());
+                    IsAlreadyInCard = true; break;
+                }
+            if(IsAlreadyInCard==false) list.add(newItem);
+        }
+        if(newItem instanceof Service)
+            list.add(newItem);
     }
 
     public int getItemsCount(){

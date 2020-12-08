@@ -4,6 +4,7 @@ import sk.kosickaacademic.simon.eshop.cart.Cart;
 import sk.kosickaacademic.simon.eshop.countable.Goods;
 import sk.kosickaacademic.simon.eshop.coupons.Coupon;
 import sk.kosickaacademic.simon.eshop.coupons.ReadFile;
+import sk.kosickaacademic.simon.eshop.services.Delivery;
 import sk.kosickaacademic.simon.eshop.uncountable.Food;
 
 import java.util.ArrayList;
@@ -14,11 +15,16 @@ public class Main {
         Item lamp = new Goods("Lamp", 1, 0.83);
         Item bananas = new Food("Banana", 3, 0.35);
         Item apples = new Food("Apple", 2, 0.28);
+        Item delivery = new Delivery(3.49);
 
         Cart cart = new Cart();
         cart.addItem(lamp);
         cart.addItem(bananas);
         cart.addItem(apples);
+        cart.addItem(bananas);
+        cart.addItem(apples);
+        cart.addItem(apples);
+        cart.addItem(delivery);
 
         cart.printItems();
         System.out.println();
